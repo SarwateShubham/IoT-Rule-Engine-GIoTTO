@@ -26,7 +26,7 @@
   function emptyRegion(loca)
   {
     $.ajax({
-           url: 'https://bd-exp.andrew.cmu.edu:81/oauth/access_token/client_id=CLIENT_ID/client_secret=CLIENT_KEY',
+           url: 'https://bd-exp.andrew.cmu.edu:81/oauth/access_token/client_id=9V9CgOEgypeBr8LlSeaC5NbEtqjIQZ8f7bBpWz0H/client_secret=2RhqVwdqIjEJyEWly9GN3ZC1pmlhZVLqTcl0y0soAdrHNFA0uP',
            contentType: "application/json; charset=utf-8",
            success: function(response){
                 access_token = response.access_token;
@@ -43,32 +43,47 @@
    }
 
   function Get_regions(access_token){
+    console.log("IN here");
     $('#node-input-region').empty();
     var sensors = null;
     var i=0;
     var j=0;
+    arr=[];
     $.ajax({
           url:'https://bd-exp.andrew.cmu.edu:81/api/search',
           contentType: "application/json; charset=utf-8",
           headers: { 'Authorization': 'bearer '+access_token},
           data: "{\"data\":{\"Tags\":[\"room:"+locations+"\"]}}",
           success: function(response){
+    //console.log(response.result);
           for(i=0;i<response.result.length;i++)
           {
+          //console.log(response.result.length);
               sensors = response.result[i];
               for(j=0;j<sensors.tags.length;j++)
               {
+                //console.log(sensors.tags[j].name);
                 if(sensors.tags[j].name=="region")
                 {
-                console.log(sensors.name);
-                  $('#node-input-region').append($('<option>', {
-                   value: sensors.tags[j].value,
-                    text: sensors.tags[j].value
-                    }));
+		arr[i]=sensors.tags[j].value;
+                //console.log(sensors.name);
+                //  $('#node-input-region').append($('<option>', {
+                //  value: sensors.tags[j].value,
+                //    text: sensors.tags[j].value
+                //    }));
                  }
                 }
           }
-          
+          arr = arr.filter((v, i, a) => a.indexOf(v) === i);
+          //console.log(arr);
+          for(i=0;i<arr.length;i++)
+          {
+                $('#node-input-region').append($('<option>', {
+                   value: arr[i],
+                    text: arr[i]
+                    }));
+          }
+          arr=[];
           },
           error: function(error) {
                  alert(error);
@@ -156,8 +171,7 @@ function loadsens(value)
   <div class="form-row">
           <label for="node-input-location"><i class="icon-tag"></i> LOCATION </label>
           <select id="node-input-location" name="dropdown_location" onClick="emptyRegion(value);">
-            <option value="2502">2502</option>
-            <option value="2502A">2502A</option>
+            <option value="DemoRoom">DemoRoom</option>
           </select>
   </div>
   
@@ -172,6 +186,7 @@ function loadsens(value)
           <label for="node-input-sensor"><i class="icon-tag"></i> Sensor </label>
           <select id="node-input-sensor" name="dropdown_sensor" onClick="louuid(value);">
             <option value="some">rasdasd</option>
+	    <option value="soqwe">rasdff</option>
           </select>
       </div>
 <div class="form-row" style="display: none">
