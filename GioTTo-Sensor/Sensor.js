@@ -28,7 +28,7 @@ function get_values(uuid){
   var access_token=null;
   var vals, data;
 var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", 'https://bd-exp.andrew.cmu.edu:81/oauth/access_token/client_id=d9OLiUS4TVgOKiLBWqWOxZnOctfCFQ2MbDBdGkmY/client_secret=8Khud8jHYrHqul9q4e0M9QtmUL6ykJsJBxMtU1L3voS1FkmoQA', false ); // false for synchronous request
+    xmlHttp.open( "GET", 'https://bd-exp.andrew.cmu.edu:81/oauth/access_token/client_id=9V9CgOEgypeBr8LlSeaC5NbEtqjIQZ8f7bBpWz0H/client_secret=2RhqVwdqIjEJyEWly9GN3ZC1pmlhZVLqTcl0y0soAdrHNFA0uP', false ); // false for synchronous request
     xmlHttp.send( null );
     data=JSON.parse(xmlHttp.responseText);
     access_token=data.access_token;
