@@ -23,7 +23,7 @@
   function emptyRegion(loca)
   {
     $.ajax({
-           url: 'https://bd-exp.andrew.cmu.edu:81/oauth/access_token/client_id=d9OLiUS4TVgOKiLBWqWOxZnOctfCFQ2MbDBdGkmY/client_secret=8Khud8jHYrHqul9q4e0M9QtmUL6ykJsJBxMtU1L3voS1FkmoQA',
+           url: 'https://bd-exp.andrew.cmu.edu:81/oauth/access_token/client_id=9V9CgOEgypeBr8LlSeaC5NbEtqjIQZ8f7bBpWz0H/client_secret=2RhqVwdqIjEJyEWly9GN3ZC1pmlhZVLqTcl0y0soAdrHNFA0uP',
            contentType: "application/json; charset=utf-8",
            success: function(response){
                 access_token = response.access_token;
@@ -44,6 +44,7 @@
     var sensors = null;
     var i=0;
     var j=0;
+    var arr=[];
     $.ajax({
           url:'https://bd-exp.andrew.cmu.edu:81/api/search',
           contentType: "application/json; charset=utf-8",
@@ -61,15 +62,25 @@
                 //console.log(sensors.tags[j].name);
                 if(sensors.tags[j].name=="region")
                 {
-                console.log(sensors.name);
-                  $('#node-input-region').append($('<option>', {
-                   value: sensors.tags[j].value,
-                    text: sensors.tags[j].value
-                    }));
+		arr[i]=sensors.tags[j].value;
+                //console.log(sensors.name);
+                //  $('#node-input-region').append($('<option>', {
+                 //  value: sensors.tags[j].value,
+                 //   text: sensors.tags[j].value
+                 //   }));
                  }
                 }
           }
-          
+          arr = arr.filter((v, i, a) => a.indexOf(v) === i);
+          //console.log(arr);
+          for(i=0;i<arr.length;i++)
+          {
+                $('#node-input-region').append($('<option>', {
+                   value: arr[i],
+                    text: arr[i]
+                    }));
+          }
+          arr=[];
           },
           error: function(error) {
                  alert(error);
@@ -132,8 +143,7 @@ function loadsensors(value)
   <div class="form-row">
           <label for="node-input-location"><i class="icon-tag"></i> LOCATION </label>
           <select id="node-input-location" name="dropdown_location"onClick="emptyRegion(value);">
-            <option value="2502">2502</option>
-            <option value="2502A">2502A</option>
+            <option value="DemoRoom">DemoRoom</option>
           </select>
   </div>
   
