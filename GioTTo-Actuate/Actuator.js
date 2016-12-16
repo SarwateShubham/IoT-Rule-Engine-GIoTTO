@@ -1,3 +1,10 @@
+/*
+----------------------------------------------------------------------------------------------------------------------------------
+GIoTTO Actuate is a Node red node that will actuate the devices connected to GIoTTO/Building Depot.
+The user may select the devices which is ought to be controlled using this node and provide the new state that
+the device needs to be set to as an input to the node.
+----------------------------------------------------------------------------------------------------------------------------------
+*/
 module.exports = function(RED) {
 var newstate1;
 var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
@@ -12,17 +19,17 @@ var result;
         this.type1=config.type1;
 	this.newstate=config.newstate;
 	this.on('input', function(msg) {
-	   newstate1=msg.payload;
-	   result=Actuate(this.type1,newstate1,this.identity);
-            msg.payload = {"value":this.identity,"role":this.type1,"new":newstate1};
+	   new_state=msg.payload;
+	   result=Actuate(this.type1,new_state,this.identity);
+            msg.payload = {"value":this.identity,"role":this.type1,"new":new_state};
            this.send(msg);
         });
     }
+	
 function Actuate(type,new_state,identity){
 var request = require('request');
-
 request.post(
-    'http://bd-exp.andrew.cmu.edu:69/api',
+    'http://BUILDING_DEPOT_ADDRESS:AE_PORT/api',
     { json: {type:type,new_state:String(new_state),identity:identity} },
     function (error, response, body) {
         if (!error && response.statusCode == 200) {
@@ -30,18 +37,6 @@ request.post(
         }
     }
 );
-/*
-    console.log("Entriya");
-    var params="{type:\""+type+"\",new_state:\""+new_state+"\",identity:\""+identity+"\"}";
-    var url = "http://bd-exp.andrew.cmu.edu:69/api";
-    var xml = new XMLHttpRequest();
-    xml.open("POST", url, true);
-    console.log(params);
-    xml.send(params);
-    vals=JSON.parse(xml.responseText);
-    console.log(vals)
-    return  vals;
-*/
 }
     RED.nodes.registerType("GioTTo-Actuate",ActuateNode);
 }
