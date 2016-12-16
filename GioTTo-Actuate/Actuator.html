@@ -26,7 +26,7 @@
   function emptyRegion(loca)
   {
     $.ajax({
-           url: 'https://bd-exp.andrew.cmu.edu:81/oauth/access_token/client_id=d9OLiUS4TVgOKiLBWqWOxZnOctfCFQ2MbDBdGkmY/client_secret=8Khud8jHYrHqul9q4e0M9QtmUL6ykJsJBxMtU1L3voS1FkmoQA',
+           url: 'https://bd-exp.andrew.cmu.edu:81/oauth/access_token/client_id=CLIENT_ID/client_secret=CLIENT_KEY',
            contentType: "application/json; charset=utf-8",
            success: function(response){
                 access_token = response.access_token;
@@ -43,7 +43,6 @@
    }
 
   function Get_regions(access_token){
-    console.log("IN here");
     $('#node-input-region').empty();
     var sensors = null;
     var i=0;
@@ -54,14 +53,11 @@
           headers: { 'Authorization': 'bearer '+access_token},
           data: "{\"data\":{\"Tags\":[\"room:"+locations+"\"]}}",
           success: function(response){
-    //console.log(response.result);
           for(i=0;i<response.result.length;i++)
           {
-          //console.log(response.result.length);
               sensors = response.result[i];
               for(j=0;j<sensors.tags.length;j++)
               {
-                //console.log(sensors.tags[j].name);
                 if(sensors.tags[j].name=="region")
                 {
                 console.log(sensors.name);
@@ -176,7 +172,6 @@ function loadsens(value)
           <label for="node-input-sensor"><i class="icon-tag"></i> Sensor </label>
           <select id="node-input-sensor" name="dropdown_sensor" onClick="louuid(value);">
             <option value="some">rasdasd</option>
-	    <option value="soqwe">rasdff</option>
           </select>
       </div>
 <div class="form-row" style="display: none">
