@@ -1,0 +1,158 @@
+<script type="text/javascript">
+    RED.nodes.registerType('GioTTo-Sensor',{
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:"GioTTo-Sensor"},
+            location: {value: ""},
+            sensor: {value:""},
+            region: {value: ""},
+     	    uuid: {value: "Something"}
+        },
+        inputs:1,
+  outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.sensor+" in "+this.region|| this.name;
+        }
+    });
+
+  var locations;
+  var access_token;
+  var Data_all=null;
+  function emptyRegion(loca)
+  {
+    $.ajax({
+           url: 'https://bd-exp.andrew.cmu.edu:81/oauth/access_token/client_id=d9OLiUS4TVgOKiLBWqWOxZnOctfCFQ2MbDBdGkmY/client_secret=8Khud8jHYrHqul9q4e0M9QtmUL6ykJsJBxMtU1L3voS1FkmoQA',
+           contentType: "application/json; charset=utf-8",
+           success: function(response){
+                access_token = response.access_token;
+                console.log("Access_Token "+access_token);
+    locations=loca;
+    Get_regions(access_token);
+           },
+           error: function(error) {
+                   alert(error);
+                   console.log(error);
+           },
+            type: 'GET'
+         });
+   }
+  function Get_regions(access_token){
+    console.log("IN here");
+    $('#node-input-region').empty();
+    var sensors = null;
+    var i=0;
+    var j=0;
+    $.ajax({
+          url:'https://bd-exp.andrew.cmu.edu:81/api/search',
+          contentType: "application/json; charset=utf-8",
+          headers: { 'Authorization': 'bearer '+access_token},
+          data: "{\"data\":{\"Tags\":[\"room:"+locations+"\"]}}",
+          success: function(response){
+    //console.log(response.result);
+          for(i=0;i<response.result.length;i++)
+          {
+
+          //console.log(response.result.length);
+              sensors = response.result[i];
+              for(j=0;j<sensors.tags.length;j++)
+              {
+                //console.log(sensors.tags[j].name);
+                if(sensors.tags[j].name=="region")
+                {
+                console.log(sensors.name);
+                  $('#node-input-region').append($('<option>', {
+                   value: sensors.tags[j].value,
+                    text: sensors.tags[j].value
+                    }));
+                 }
+                }
+          }
+          
+          },
+          error: function(error) {
+                 alert(error);
+                 console.log(error);
+         },
+         type: 'POST'
+        });
+  }
+
+function loadsensors(value)
+  {
+    $('#node-input-sensor').empty();
+    var sensors = null;
+    var names=null;
+    var i=0;
+    var j=0;
+    $('#node-input-sensor').empty();
+    $.ajax({
+          url:'https://bd-exp.andrew.cmu.edu:81/api/search',
+          contentType: "application/json; charset=utf-8",
+          headers: { 'Authorization': 'bearer '+access_token},
+          data: "{\"data\":{\"Tags\":[\"region:"+value+"\"]}}",
+          success: function(response){
+        Data_all=response;
+          console.log(Data_all);
+          for(i=0;i<response.result.length;i++)
+           {
+             $('#node-input-sensor').append($('<option>', {
+             value: response.result[i].source_name+","+response.result[i].source_identifier,
+             text: response.result[i].source_name+","+response.result[i].source_identifier
+            }));
+           }
+          },
+          error: function(error) {
+                  alert(error);
+                  console.log(error);
+          },
+            type: 'POST'
+         });
+  }
+  //console.log(Data_all);
+ function loaduuid(value){
+  var uuid_temp;
+  var end_time= new Date() / 1000;
+  var start_time=end_time-150;
+  if(Data_all!=null){
+  for(i=0;i<Data_all.result.length;i++){
+    if(value==Data_all.result[i].source_name+","+Data_all.result[i].source_identifier&& Data_all!=null)
+    {
+     uuid_temp=Data_all.result[i].name;
+     $('#node-input-uuid').val(uuid_temp,access_token);
+    }
+   }
+  }
+}
+
+</script>
+
+<script type="text/x-red" data-template-name="GioTTo-Sensor">
+  <div class="form-row">
+          <label for="node-input-location"><i class="icon-tag"></i> LOCATION </label>
+          <select id="node-input-location" name="dropdown_location"onClick="emptyRegion(value);">
+            <option value="2502">2502</option>
+            <option value="2502A">2502A</option>
+          </select>
+  </div>
+  
+  <div class="form-row" >
+          <label for="node-input-region"><i class="icon-tag"></i> REGION </label>
+           <select id="node-input-region" name="dropdown_region" onClick="loadsensors(value);">
+           <option value="random"></option>
+          </select>
+  </div>
+
+  <div class="form-row" >
+          <label for="node-input-sensor"><i class="icon-tag"></i> Sensor </label>
+          <select id="node-input-sensor" name="dropdown_sensor" onClick="loaduuid(value);">
+            <option value="some"></option>
+          </select>
+      </div>
+  
+  <div class="form-row" style="display: block">
+	  <input type="text" id="node-input-uuid" name="something" ><i class="icon-tag"></i><br>
+  </div>
+
+</script>

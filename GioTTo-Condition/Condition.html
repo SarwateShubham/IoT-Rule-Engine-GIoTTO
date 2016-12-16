@@ -1,0 +1,37 @@
+<script type="text/javascript">
+    RED.nodes.registerType('GioTTo-Condition',{
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""},
+	    role: {value:"GioTTo-Condition"}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||this.role;
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="GioTTo-Condition">
+    <div class="form-row" style="display: none">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row" >
+	<label for="node-input-role"><i class="icon-tag"></i> TYPE </label>
+        <select id="node-input-role" name="dropdown"">
+          <option value=">">More than</option>
+          <option value="<">Less than</option>
+          <option value="=">Equal</option>
+	 <option value="!=">Not Equal</option>
+         </select>
+
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="GioTTo-Condition">
+    <p>A simple node that converts the message payloads into all lower-case characters</p>
+</script>

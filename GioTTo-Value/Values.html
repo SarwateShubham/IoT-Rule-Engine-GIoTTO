@@ -1,0 +1,41 @@
+<script type="text/javascript">
+    RED.nodes.registerType('GioTTo-Value',{
+        category: 'function',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""},
+	    compare_value: {value:"GioTTo-Value"},
+	    satisfy:{value: ""},
+	    notsatisfy: {value: ""}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||this.compare_value;
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="GioTTo-Value">
+    <div class="form-row" style="display: none">
+        <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class=style="form-row">
+	<label for="node-input-compare_value"><i class="icon-tag"></i>Value to Compare</label>
+	<input type="text" id="node-input-compare_value" placeholder="Value">
+    </div>
+    <div class=style="form-row">
+        <label for="node-input-satisfy"><i class="icon-tag"></i>If condition is satisfied</label>
+        <input type="text" id="node-input-satisfy" placeholder="Value">
+    </div>
+    <div class=style="form-row">
+        <label for="node-input-notsatisfy"><i class="icon-tag"></i>If condition is not satisfied</label>
+        <input type="text" id="node-input-notsatisfy" placeholder="Value">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="GioTTo-Value">
+    <p>A simple node that converts the message payloads into all lower-case characters</p>
+</script>
