@@ -47,9 +47,7 @@ Step 2: Drag a GioTTo-Sensor node and select the sensor that you wish to use.
 
 Step 3: Drag a GioTTo-Condition node and select the condition.
 
-Step 4: Drag a GioTTo-Value node and specify the value you wish to Compare and the new state that you wish the device to be in if the condition is satisfied and when it is
-
-not satisfied.
+Step 4: Drag a GioTTo-Value node and specify the value you wish to Compare and the new state that you wish the device to be in if the condition is satisfied and when it is not satisfied.
 
 Step 5: Drag a GioTTo-Actuate node and select the actuator of your choice!
 
