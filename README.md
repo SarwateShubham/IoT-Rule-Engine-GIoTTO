@@ -2,7 +2,7 @@
 
 Rule engine is a node-red based visual programming tool to use program simple rules to actuate devices that are connected to the Building Depot/ GIoTTO platform.
 
-It consists for 4 different nodes that :
+It consists for 4 different nodes :
 
 - GIoTTO-Sensor : The following node is developed in-order to take the sensor readings from the sensors that have been connected to GioTTO.
 - GIoTTO-Condition : The following node is used to allow the user to specify the condition that the value of the sensor needs to be compared with.
@@ -21,7 +21,7 @@ STEP 3 : Obtain a client ID and client Secret from Building Depot which shall be
 
 **Steps for installing and using the Rule engine:**
 
-STEP 0 : Please have a running version of [Building Depot/GIoTTO](http://iotexpedition.org/downloads.html) on the target machine and a set of actuators, sensors posting data to the .
+STEP 0 : Please have a running version of [Building Depot/GIoTTO](http://iotexpedition.org/downloads.html) on the target machine and a set of actuators, sensors posting data to Building Depot/GIoTTO.
 
 STEP 1 : Install [Node-Red](https://nodered.org/docs/getting-started/installation) for the corresponding operating system (Preferably Linux based)
 
