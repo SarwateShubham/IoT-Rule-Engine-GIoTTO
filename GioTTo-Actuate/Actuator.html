@@ -26,7 +26,7 @@
   function emptyRegion(loca)
   {
     $.ajax({
-           url: 'https://bd-exp.andrew.cmu.edu:81/oauth/access_token/client_id=9V9CgOEgypeBr8LlSeaC5NbEtqjIQZ8f7bBpWz0H/client_secret=2RhqVwdqIjEJyEWly9GN3ZC1pmlhZVLqTcl0y0soAdrHNFA0uP',
+           url: 'https://BD-ADDRESS:81/oauth/access_token/client_id=CLIENT_ID/client_secret=CLIENT_SECRET',
            contentType: "application/json; charset=utf-8",
            success: function(response){
                 access_token = response.access_token;
@@ -50,27 +50,19 @@
     var j=0;
     arr=[];
     $.ajax({
-          url:'https://bd-exp.andrew.cmu.edu:81/api/search',
+          url:'https://BD-ADDRESS:81/api/search',
           contentType: "application/json; charset=utf-8",
           headers: { 'Authorization': 'bearer '+access_token},
           data: "{\"data\":{\"Tags\":[\"room:"+locations+"\"]}}",
           success: function(response){
-    //console.log(response.result);
           for(i=0;i<response.result.length;i++)
           {
-          //console.log(response.result.length);
               sensors = response.result[i];
               for(j=0;j<sensors.tags.length;j++)
               {
-                //console.log(sensors.tags[j].name);
                 if(sensors.tags[j].name=="region")
                 {
 		arr[i]=sensors.tags[j].value;
-                //console.log(sensors.name);
-                //  $('#node-input-region').append($('<option>', {
-                //  value: sensors.tags[j].value,
-                //    text: sensors.tags[j].value
-                //    }));
                  }
                 }
           }
@@ -102,7 +94,7 @@ function loadsens(value)
     var j=0;
     $('#node-input-sensor').empty();
     $.ajax({
-          url:'https://bd-exp.andrew.cmu.edu:81/api/search',
+          url:'https://BD-ADDRESS:81/api/search',
           contentType: "application/json; charset=utf-8",
           headers: { 'Authorization': 'bearer '+access_token},
           data: "{\"data\":{\"Tags\":[\"region:"+value+"\"]}}",
@@ -115,7 +107,6 @@ function loadsens(value)
 		sensors = response.result[i];
       		for(j=0;j<sensors.tags.length;j++)
               {
-                //console.log(sensors.tags[j].name);
                 if(response.result[i].source_name=="status"&&sensors.tags[j].name=="identity")
                 {
 		$('#node-input-sensor').append($('<option>', {
