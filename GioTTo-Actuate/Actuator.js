@@ -29,7 +29,7 @@ function Actuate(type,new_state,identity){
 var request = require('request');
 
 request.post(
-    'http://bd-exp.andrew.cmu.edu:69/api',
+    'http://BD-ADDRESS:69/api',//Please add the BD address for actuation engine
     { json: {type:type,new_state:String(new_state),identity:identity} },
     function (error, response, body) {
         if (!error && response.statusCode == 200) {
