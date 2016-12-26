@@ -1,4 +1,4 @@
-**IoT-Rule-Engine-GIoTTO**
+#IoT-Rule-Engine-GIoTTO
 
 Rule engine is a node-red based visual programming tool to use program simple rules to actuate devices that are connected to the Building Depot/ GIoTTO platform.
 
@@ -11,7 +11,7 @@ It consists for 4 different nodes :
 
 _More details regarding the nodes can be found here._
 
-**Steps before running the Rule engine:**
+##Steps before running the Rule engine
 
 STEP 1 : Please have a running version of [Building Depot/GIoTTO](http://iotexpedition.org/downloads.html) with the Actuation Engine running on the target machine and a set of actuators, sensors posting data to the GIoTTO.
 
@@ -19,7 +19,7 @@ STEP 2 : Make sure that actuators have a type, identity tag that allows it to be
 
 STEP 3 : Obtain a client ID and client Secret from Building Depot which shall be used for the Rule Engine.
 
-**Steps for installing and using the Rule engine:**
+##Steps for installing and using the Rule engine
 
 STEP 0 : Please have a running version of [Building Depot/GIoTTO](http://iotexpedition.org/downloads.html) on the target machine and a set of actuators, sensors posting data to Building Depot/GIoTTO.
 
@@ -39,7 +39,7 @@ STEP 7 : Open the terminal and run command **&quot;node-red&quot;** which will s
 
 
 
-**Steps for making rules :**
+##Steps for making rules
 
 Step 1: Drag an inject node and set it on repeating at an interval of your choice.
 
