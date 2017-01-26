@@ -37,7 +37,7 @@ STEP 6 : (*When Running for the first time*)Please add the address of BD,Actuati
 
 STEP 7 : Open the terminal and run command **&quot;node-red&quot;** which will start the Node-red interface on localhost:1880 by default.
 
-*In-order to change the credentials if you are not running the Rule engine for the first time, please run the **fixer.py** python script first to restore the Nodes to the initial state, then edit the **config.ini** file with the new credentials and then run the **helper.py** python script*
+_In-order to change the credentials if you are not running the Rule engine for the first time, please run the **fixer.py** python script first to restore the Nodes to the initial state, then edit the **config.ini** file with the new credentials and then run the **helper.py** python script_
 
 ##Steps for making rules
 
