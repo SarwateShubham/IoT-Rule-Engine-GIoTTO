@@ -28,14 +28,14 @@ function get_values(uuid){
   var access_token=null;
   var vals, data;
 var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", 'https://BD-ADDRESS:81/oauth/access_token/client_id=CLIENT-ID/client_secret=CLIENT-KEY', false ); // false for synchronous request
+    xmlHttp.open( "GET", 'BD_oauth_address', false ); // false for synchronous request
     xmlHttp.send( null );
     data=JSON.parse(xmlHttp.responseText);
     access_token=data.access_token;
 //    return access_token;
 
 var xml = new XMLHttpRequest();
-    xml.open("GET","https://BD-ADDRESS:82/api/sensor/"+uuid+"/timeseries?start_time="+String(start_time)+"&end_time="+String(end_time),false);
+    xml.open("GET","BD_time_address"+uuid+"/timeseries?start_time="+String(start_time)+"&end_time="+String(end_time),false);
     xml.setRequestHeader("Authorization", "bearer " + access_token );
     xml.send( null );
     vals=JSON.parse(xml.responseText);

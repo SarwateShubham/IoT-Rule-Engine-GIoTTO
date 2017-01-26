@@ -23,7 +23,7 @@
   function emptyRegion(loca)
   {
     $.ajax({
-           url: 'https://BD-ADDRESS:81/oauth/access_token/client_id=CLIENT-ID/client_secret=CLIENT-KEY',
+           url: 'BD_oauth_address',
            contentType: "application/json; charset=utf-8",
            success: function(response){
                 access_token = response.access_token;
@@ -46,7 +46,7 @@
     var j=0;
     var arr=[];
     $.ajax({
-          url:'https://BD-ADDRESS:81/api/search',
+          url:'BD_search_address',
           contentType: "application/json; charset=utf-8",
           headers: { 'Authorization': 'bearer '+access_token},
           data: "{\"data\":{\"Tags\":[\"room:"+locations+"\"]}}",
@@ -89,7 +89,7 @@ function loadsensors(value)
     var j=0;
     $('#node-input-sensor').empty();
     $.ajax({
-          url:'https://BD-ADDRESS:81/api/search',
+          url:'BD_search_address',
           contentType: "application/json; charset=utf-8",
           headers: { 'Authorization': 'bearer '+access_token},
           data: "{\"data\":{\"Tags\":[\"region:"+value+"\"]}}",
