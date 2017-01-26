@@ -33,11 +33,11 @@ STEP 4 : Open to the   [.node-red](https://nodered.org/docs/configuration) folde
 
 STEP 5 : Copy all the 4 folders to the **nodes**  folder discussed above whose default path should be $HOME/.node-red/nodes.
 
-STEP 6 : Please add the address of BD,Actuation Engine and the client credentials to the files in GIoTTO-Actuate and GIoTTO-Sensor folders.(A config file can be made for this purpose)
+STEP 6 : (*When Running for the first time*)Please add the address of BD,Actuation Engine and the client credentials to the **config.ini** file and run the **helper.py** python script. 
 
 STEP 7 : Open the terminal and run command **&quot;node-red&quot;** which will start the Node-red interface on localhost:1880 by default.
 
-
+*In-order to change the credentials if you are not running the Rule engine for the first time, please run the **fixer.py** python script first to restore the Nodes to the initial state, then edit the **config.ini** file with the new credentials and then run the **helper.py** python script*
 
 ##Steps for making rules
 
