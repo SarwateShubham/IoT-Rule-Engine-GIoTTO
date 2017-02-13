@@ -20,8 +20,9 @@
   var locations;
   var access_token;
   var Data_all=null;
-  function emptyRegion(loca)
+  function emptyRegion()
   {
+  var loca = $("#node-input-location").val();
     $.ajax({
            url: 'BD_oauth_address',
            contentType: "application/json; charset=utf-8",
@@ -46,7 +47,7 @@
     var j=0;
     var arr=[];
     $.ajax({
-          url:'BD_search_address',
+          url:'https://bd-exp.andrew.cmu.edu:81/api/search',
           contentType: "application/json; charset=utf-8",
           headers: { 'Authorization': 'bearer '+access_token},
           data: "{\"data\":{\"Tags\":[\"room:"+locations+"\"]}}",
@@ -89,7 +90,7 @@ function loadsensors(value)
     var j=0;
     $('#node-input-sensor').empty();
     $.ajax({
-          url:'BD_search_address',
+          url:'https://bd-exp.andrew.cmu.edu:81/api/search',
           contentType: "application/json; charset=utf-8",
           headers: { 'Authorization': 'bearer '+access_token},
           data: "{\"data\":{\"Tags\":[\"region:"+value+"\"]}}",
@@ -129,13 +130,12 @@ function loadsensors(value)
 </script>
 
 <script type="text/x-red" data-template-name="GioTTo-Sensor">
-  <div class="form-row">
-          <label for="node-input-location"><i class="icon-tag"></i> LOCATION </label>
-          <select id="node-input-location" name="dropdown_location"onClick="emptyRegion(value);">
-            <option value="DemoRoom">DemoRoom</option>
-          </select>
-  </div>
-  
+
+  <div class="form-row" style="display: block">
+          <input type="text" id="node-input-location" name="something" ><i class="icon-tag"></i>
+  	  <button type="button" onclick="emptyRegion()">Load Regions</button>  
+</div>  
+
   <div class="form-row" >
           <label for="node-input-region"><i class="icon-tag"></i> REGION </label>
            <select id="node-input-region" name="dropdown_region" onClick="loadsensors(value);">
@@ -150,8 +150,4 @@ function loadsensors(value)
           </select>
       </div>
   
-  <div class="form-row" style="display: block">
-	  <input type="text" id="node-input-uuid" name="something" ><i class="icon-tag"></i><br>
-  </div>
-
 </script>
