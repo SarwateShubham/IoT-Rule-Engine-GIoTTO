@@ -22,7 +22,7 @@ BD_oauth_Address+=ConfigSectionMap("UserInfo")['clientid']
 BD_oauth_Address+='/client_secret='+ConfigSectionMap("UserInfo")['clientkey']
 print(BD_oauth_Address)
 
-BD_search_Address=ConfigSectionMap("ServerInfo")['serveraddress']+':'+'/api/search'
+BD_search_Address=ConfigSectionMap("ServerInfo")['serveraddress']+':'+ConfigSectionMap("ServerInfo")['oauth_port']+'/api/search'
 print(BD_search_Address)
 
 BD_actuate_Address=ConfigSectionMap("ServerInfo")['serveraddress']+':'+ConfigSectionMap("ServerInfo")['actuation_port']+'/api'

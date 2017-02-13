@@ -51,7 +51,7 @@
     var j=0;
     arr=[];
     $.ajax({
-          url:'https://bd-exp.andrew.cmu.edu:81/api/search',
+          url:'BD_search_address',
           contentType: "application/json; charset=utf-8",
           headers: { 'Authorization': 'bearer '+access_token},
           data: "{\"data\":{\"Tags\":[\"room:"+locations+"\"]}}",
@@ -95,7 +95,7 @@ function loadsens(value)
     var j=0;
     $('#node-input-sensor').empty();
     $.ajax({
-          url:'https://bd-exp.andrew.cmu.edu:81/api/search',
+          url:'BD_search_address',
           contentType: "application/json; charset=utf-8",
           headers: { 'Authorization': 'bearer '+access_token},
           data: "{\"data\":{\"Tags\":[\"region:"+value+"\"]}}",
