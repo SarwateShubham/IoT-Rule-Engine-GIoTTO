@@ -64,4 +64,7 @@ Step 5: Drag a GioTTo-Actuate node and select the actuator of your choice!
 
 Step 6: Join all the nodes and click Deploy!
 
-For a video Demonstration, Please refer [this](https://www.youtube.com/watch?v=79BcuO4kHEE).
+## Demo
+
+[![Rule Engine](http://img.youtube.com/vi/79BcuO4kHEE/0.jpg)](http://www.youtube.com/watch?v=79BcuO4kHEE)
+
