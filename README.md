@@ -1,4 +1,15 @@
-#IoT-Rule-Engine-GIoTTO
+## IoT-Rule-Engine-GIoTTO
+
+
+## Table of contents
+
+- [Introduction](#introduction)
+- [Pre-requisites](#prerequisites)
+- [How to make a rule ?](#making-a-rule)
+
+
+## Introduction
+
 
 Rule engine is a node-red based visual programming tool to use program simple rules to actuate devices that are connected to the Building Depot/ GIoTTO platform.
 
@@ -11,7 +22,8 @@ It consists for 4 different nodes :
 
 _More details regarding the nodes can be found here._
 
-##Steps before running the Rule engine
+## Prerequisites
+
 
 STEP 1 : Please have a running version of [Building Depot/GIoTTO](http://iotexpedition.org/downloads.html) with the Actuation Engine running on the target machine and a set of actuators, sensors posting data to the GIoTTO.
 
@@ -19,11 +31,9 @@ STEP 2 : Make sure that actuators have a type, identity tag that allows it to be
 
 STEP 3 : Obtain a client ID and client Secret from Building Depot which shall be used for the Rule Engine.
 
-##Steps for installing and using the Rule engine
+## Installation
 
-STEP 0 : Please have a running version of [Building Depot/GIoTTO](http://iotexpedition.org/downloads.html) on the target machine and a set of actuators, sensors posting data to Building Depot/GIoTTO.
-
-STEP 1 : Install [Node-Red](https://nodered.org/docs/getting-started/installation) for the corresponding operating system (Preferably Linux based)
+STEP 1 : Install [Node-Red](https://nodered.org/docs/getting-started/installation) for the corresponding operating system (Preferably Linux)
 
 STEP 2 : Install [XMLHttpRequest](https://www.npmjs.com/package/xmlhttprequest) if it is not already installed.
 
@@ -39,7 +49,8 @@ STEP 7 : Open the terminal and run command **&quot;node-red&quot;** which will s
 
 _In-order to change the credentials if you are not running the Rule engine for the first time, please run the **fixer.py** python script first to restore the Nodes to the initial state, then edit the **config.ini** file with the new credentials and then run the **helper.py** python script_
 
-##Steps for making rules
+## Making a rule
+
 
 Step 1: Drag an inject node and set it on repeating at an interval of your choice.
 
